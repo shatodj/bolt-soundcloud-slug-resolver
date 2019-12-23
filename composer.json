@@ -1,6 +1,6 @@
 {
-    "name": "bolt/bolt-extension-starter",
-    "description": "",
+    "name": "shatodj/bolt-soundcloud",
+    "description": "Bolt CMS Soundcloud Extension",
     "type": "bolt-extension",
     "keywords": [
     ],
@@ -13,25 +13,25 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "",
-            "email": "you@example.com"
+            "name": "Jakub Šatník",
+            "email": "kubo1988@gmail.com"
         }
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Bolt\\Extension\\YourName\\ExtensionName\\": "src"
+            "Bolt\\Extension\\SHatoDJ\\Soundcloud\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bolt\\Extension\\YourName\\ExtensionName\\Tests\\": "tests",
+            "Bolt\\Extension\\SHatoDJ\\Soundcloud\\Tests\\": "tests",
             "Bolt\\Tests\\": "vendor/bolt/bolt/tests/phpunit/unit/"
         }
     },
     "extra": {
         "bolt-assets": "web",
-        "bolt-class": "Bolt\\Extension\\YourName\\ExtensionName\\ExtensionNameExtension"
+        "bolt-class": "Bolt\\Extension\\SHatoDJ\\Soundcloud\\SoundcloudExtension"
     }
 }

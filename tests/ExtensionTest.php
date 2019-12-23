@@ -1,9 +1,9 @@
 <?php
 
-namespace Bolt\Extension\YourName\ExtensionName\Tests;
+namespace Bolt\Extension\SHatoDJ\Soundcloud\Tests;
 
 use Bolt\Tests\BoltUnitTest;
-use Bolt\Extension\YourName\ExtensionName\ExtensionNameExtension;
+use Bolt\Extension\SHatoDJ\Soundcloud\SoundcloudExtension;
 
 /**
  * ExtensionName testing class.
@@ -18,10 +18,10 @@ class ExtensionTest extends BoltUnitTest
     public function testExtensionBasics()
     {
         $app = $this->getApp(false);
-        $extension = new ExtensionNameExtension($app);
+        $extension = new SoundcloudExtension($app);
 
         $name = $extension->getName();
-        $this->assertSame($name, 'ExtensionName');
+        $this->assertSame($name, 'Soundcloud');
         $this->assertInstanceOf('\Bolt\Extension\ExtensionInterface', $extension);
     }
 
