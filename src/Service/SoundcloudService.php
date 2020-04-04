@@ -17,9 +17,11 @@ class SoundcloudService
      * @return SoundcloudAlbum
      */
     public function getAlbum($slug) {
+        
         return SoundcloudAlbum::create((object) [
             'test' => 'test hello',
-            'slug' => (string) $slug
+            'slug' => (string) $slug,
+            'client_id' => (string) $this->config['client_id']
         ]);
     }
 

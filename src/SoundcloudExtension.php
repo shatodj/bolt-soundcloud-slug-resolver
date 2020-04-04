@@ -35,6 +35,26 @@ class SoundcloudExtension extends SimpleExtension
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultConfig()
+    {
+        return [
+            'client_id' => "xxx",
+            'base_url' => "api.soundcloud.com"
+        ];
+    }
+
+    protected function registerServices(Application $app)
+    {
+        $app['soundcloud.config'] = $app->share(
+            function () {
+                return $this->getConfig();
+            }
+        );
+    }
+
     // protected function registerServices(Application $app)
     // {
     //     // Create a runtime for the Twig extension class
