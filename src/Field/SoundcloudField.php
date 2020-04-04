@@ -1,18 +1,17 @@
 <?php
-namespace Bolt\Extensions\SHatoDJ\Soundcloud\Field;
+namespace Bolt\Extension\SHatoDJ\Soundcloud\Field;
 
-use Bolt\Extensions\SHatoDJ\Soundcloud\Helper\Url;
+use Bolt\Extension\SHatoDJ\Soundcloud\Helper\SoundcloudAlbum;
+use Bolt\Extension\SHatoDJ\Soundcloud\Service\SoundcloudService;
 use Bolt\Storage\EntityManager;
 use Bolt\Storage\Field\Type\FieldTypeBase;
 use Bolt\Storage\QuerySet;
 use Doctrine\DBAL\Types\Type;
-use Embed\Providers\Api\Soundcloud;
-
-// use Bolt\Extension\SHatoDJ\Soundcloud
-
+use Silex\Application;
 
 class SoundcloudField extends FieldTypeBase
 {
+
     public function getName()
     {
         return 'soundcloud';
@@ -26,24 +25,21 @@ class SoundcloudField extends FieldTypeBase
         return Type::getType('text');
     }
 
-    /**
-     * 
-     */
-    public function persist(QuerySet $queries, $entity, EntityManager $em = null)
-    {
-        $key = $this->mapping['fieldname'];
-        $qb = $queries->getPrimary();
-        $value = $entity->get($key);
+    // /**
+    //  * 
+    //  */
+    // public function persist(QuerySet $queries, $entity, EntityManager $em = null)
+    // {
+    //     $key = $this->mapping['fieldname'];
+    //     $qb = $queries->getPrimary();
+        
+    //     $value = $entity->get($key);
 
-        if (!$value instanceof Url) {
-            $value = Url::fromNative($value);
-        }
 
-        $qb->setValue($key, ':' . $key);
-        $qb->set($key, ':' . $key);
-        $qb->setParameter($key, (string)$value);
-
-    }
+    //     $qb->setValue($key, ':' . $key);
+    //     $qb->set($key, ':' . $key);
+    //     $qb->setParameter($key, $key);
+    // }
 
     public function getStorageOptions()
     {
@@ -57,10 +53,30 @@ class SoundcloudField extends FieldTypeBase
         $key = $this->mapping['fieldname'];
 
         $val = isset($data[$key]) ? $data[$key] : null;
+
         if ($val !== null) {
-            $value = Url::fromNative($val);
-            $this->set($entity, $value);
+            $this->set($entity, $val);
         }
     }
 
+    public function set($entity, $value)
+    {
+        
+        /** @var Application */
+        $app = $entity->app;
+
+        /** @var SoundcloudService */
+        $scService = $app["soundcloud.api"];
+
+        $scAlbum = $scService->getAlbum($value);
+
+        // dump($scAlbum);
+
+        parent::set($entity, $scAlbum);
+    }
+
+    public function getTemplate()
+    {
+        return '@soundcloud/_soundcloud.twig';
+    }
 }
