@@ -1,2 +1,7 @@
+# Soundcloud BASE URL. Change this when the default URL is not working with provided `client_id`.
+# eg.: api-mobi.soundcloud.com
 base_url: api.soundcloud.com
-client_id: xxx
+
+# In case you do not owned your developer Client ID, trye to extract one
+# from browser console (F12) when refreshing Soundcloud page or track.
+client_id: <CLIENT_ID>

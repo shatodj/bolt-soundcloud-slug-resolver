@@ -18,4 +18,4 @@
 <legend class="sr-only">Soundcloud Slug</legend>
 <label class="control-label">{{ field.label|default(key|humanize) }}</label>
 
-<input class="form-control" value="{{ value.slug|default() }}" {{ macro.attr(attr_opt) }}>
+<input class="form-control" value="{{ value|default() }}" {{ macro.attr(attr_opt) }}>

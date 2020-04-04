@@ -2,27 +2,58 @@
 
 namespace Bolt\Extension\SHatoDJ\Soundcloud\Service;
 
-use Bolt\Extension\SHatoDJ\Soundcloud\Dto\SoundcloudAlbum;
+use Bolt\Extension\SHatoDJ\Soundcloud\Dto\SoundcloudErrorDto;
+use Bolt\Extension\SHatoDJ\Soundcloud\Dto\SoundcloudPlaylistDto;
+use Exception;
+use InvalidArgumentException;
+use Njasm\Soundcloud\Request\Response;
+use Njasm\Soundcloud\Request\ResponseInterface;
 
-class SoundcloudService
+class SoundcloudService implements ISoundcloudService
 {
-    private $config;
+   
+    /** @var Soundcloud */
+    private $soundcloudApi;
 
-    public function __constructor(array $config)
+    public function __construct(SoundcloudApi $api)
     {
-        $this->config = $config;
+        $this->soundcloudApi = $api;
     }
 
     /**
-     * @return SoundcloudAlbum
+     * @inheritdoc
      */
-    public function getAlbum($slug) {
-        
-        return SoundcloudAlbum::create((object) [
-            'test' => 'test hello',
-            'slug' => (string) $slug,
-            'client_id' => (string) $this->config['client_id']
-        ]);
+    public function resolve($slug)
+    {
+        $this->testSlug($slug);
+
+        return $this->callResolve($slug);
+    }
+
+    private function testSlug($slug) {
+        if (empty($slug)) {
+            throw new InvalidArgumentException("Invalid format of soundcloud \$slug '$slug'.");
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    private function callResolve($slug) {
+        /** @var Response */
+        $response = $this->soundcloudApi->get('/resolve', ['url' => "https://soundcloud.com/$slug"])->asJson()->request();
+
+        if (!empty($response->getErrorString())) {
+            throw new Exception($response->getErrorString());
+        }
+
+        $object = $response->bodyObject();
+
+        if (empty($object->kind)) {
+            throw new Exception("Invalid \$slug '$slug'.");
+        }
+
+        return $object;
     }
 
 }
