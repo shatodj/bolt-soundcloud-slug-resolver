@@ -7,7 +7,7 @@
     ],
     "require": {
         "bolt/bolt": "^3.0",
-        "njasm/soundcloud": "@dev"
+        "njasm/soundcloud": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.7"
