@@ -6,11 +6,10 @@
         "bolt", "boltcms", "extension", "Soundcloud", "API", "twig"
     ],
     "require": {
-        "bolt/bolt": "^3.0",
-        "njasm/soundcloud": "dev-master@dev"
+        "bolt/bolt": "^3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.7"
+        "njasm/soundcloud": "dev-master@dev"
     },
     "license": "MIT",
     "authors": [

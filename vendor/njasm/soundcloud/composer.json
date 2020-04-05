@@ -1,0 +1,39 @@
+{
+    "name": "njasm/soundcloud",
+    "description": "Soundcloud API Wrapper written in PHP with OAuth 2.0 support",
+    "homepage": "http://github.com/njasm/soundcloud",
+    "license": "MIT",
+    "keywords": ["api", "soundcloud", "webservices", "webservice"],
+    "authors": [
+        {
+            "name": "Nelson João Morais",
+            "email": "njmorais@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/njasm/soundcloud/issues",
+        "source": "https://github.com/njasm/soundcloud"
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "5.7.*",
+        "php-coveralls/php-coveralls": "2.1.x-dev"       
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "njasm/container": "^1.0",
+        "ext-json": "*",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Njasm\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Njasm\\Soundcloud\\Tests\\": "tests/"            
+        }
+    }
+}
