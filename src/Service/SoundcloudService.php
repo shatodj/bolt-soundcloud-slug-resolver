@@ -2,20 +2,17 @@
 
 namespace Bolt\Extension\SHatoDJ\Soundcloud\Service;
 
-use Bolt\Extension\SHatoDJ\Soundcloud\Dto\SoundcloudErrorDto;
-use Bolt\Extension\SHatoDJ\Soundcloud\Dto\SoundcloudPlaylistDto;
 use Exception;
 use InvalidArgumentException;
 use Njasm\Soundcloud\Request\Response;
-use Njasm\Soundcloud\Request\ResponseInterface;
 
 class SoundcloudService implements ISoundcloudService
 {
    
-    /** @var Soundcloud */
+    /** @var SoundcloudApi|null */
     private $soundcloudApi;
 
-    public function __construct(SoundcloudApi $api)
+    public function __construct(SoundcloudApi $api = null)
     {
         $this->soundcloudApi = $api;
     }
@@ -40,11 +37,19 @@ class SoundcloudService implements ISoundcloudService
      * @return mixed
      */
     private function callResolve($slug) {
+        if (empty($this->soundcloudApi)) {
+            throw new Exception("Soundcloud API was not initialized properly. Check CLIENT_ID property in extension configuration.");   
+        }
+
         /** @var Response */
         $response = $this->soundcloudApi->get('/resolve', ['url' => "https://soundcloud.com/$slug"])->asJson()->request();
 
         if (!empty($response->getErrorString())) {
             throw new Exception($response->getErrorString());
+        }
+
+        if (!empty($response->getHttpCode() !== 200)) {
+            throw new Exception("Soundcloud API Error: {$response->getHttpCode()}: {$response->getHttpCodeString()}", $response->getHttpCode());
         }
 
         $object = $response->bodyObject();

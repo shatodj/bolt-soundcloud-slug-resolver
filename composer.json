@@ -1,11 +1,12 @@
 {
-    "name": "shatodj/bolt-soundcloud",
-    "description": "Bolt CMS Soundcloud Extension.",
+    "name": "shatodj/bolt-soundcloud-slug-resolver",
+    "description": "Bolt CMS Soundcloud Slug Resolver Extension.",
     "type": "bolt-extension",
     "keywords": [
+        "bolt", "boltcms", "extension", "Soundcloud", "API", "twig"
     ],
     "require": {
-        "bolt/bolt": "^3.7",
+        "bolt/bolt": "^3.0",
         "njasm/soundcloud": "@dev"
     },
     "require-dev": {
@@ -33,6 +34,6 @@
     },
     "extra": {
         "bolt-assets": "web",
-        "bolt-class": "Bolt\\Extension\\SHatoDJ\\Soundcloud\\SoundcloudExtension"
+        "bolt-class": "Bolt\\Extension\\SHatoDJ\\Soundcloud\\SoundcloudSlugResolverExtension"
     }
 }

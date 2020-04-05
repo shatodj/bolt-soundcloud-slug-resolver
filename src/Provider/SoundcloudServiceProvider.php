@@ -20,6 +20,9 @@ class SoundcloudServiceProvider implements ServiceProviderInterface
     {
         $app['soundcloud.api'] = $app->share(
             function () {
+                if (empty($this->config['client_id'])) {
+                    return null;
+                }
                 $scApi = new SoundcloudApi($this->config['client_id']);
                 $scApi->setBaseUrl($this->config['base_url']);
 

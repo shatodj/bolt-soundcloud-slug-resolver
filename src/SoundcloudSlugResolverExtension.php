@@ -2,33 +2,26 @@
 
 namespace Bolt\Extension\SHatoDJ\Soundcloud;
 
-use Bolt\Extension\SHatoDJ\Soundcloud\Field\SoundcloudField;
-use Bolt\Extension\SHatoDJ\Soundcloud\Provider\SoundcloudFieldProvider;
 use Bolt\Extension\SHatoDJ\Soundcloud\Provider\SoundcloudServiceprovider;
 use Bolt\Extension\SimpleExtension;
 use Silex\Application;
 
 /**
- * ExtensionName extension class.
+ * SoundcloudSlugResolver extension class.
  *
- * @author Your Name <you@example.com>
+ * @author Jakub Šatník <kubo1988@gmail.com>
  */
-class SoundcloudExtension extends SimpleExtension
+class SoundcloudSlugResolverExtension extends SimpleExtension
 {
    
-    public function registerFields()
-    {
-        return [
-            new SoundcloudField(),
-        ];
-    }
-
+     /**
+     * {@inheritdoc}
+     */
     public function getServiceProviders()
     {
         return [
             $this,
-            new SoundcloudServiceProvider($this->getConfig()),
-            new SoundcloudFieldProvider()
+            new SoundcloudServiceProvider($this->getConfig())
         ];
     }
 
@@ -43,6 +36,9 @@ class SoundcloudExtension extends SimpleExtension
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function registerServices(Application $app)
     {
         $app['soundcloud.config'] = $app->share(
@@ -69,13 +65,9 @@ class SoundcloudExtension extends SimpleExtension
         );
     }
 
-    protected function registerTwigPaths()
-    {
-        return [
-            'templates' => ['position' => 'prepend', 'namespace' => 'soundcloud'],
-        ];
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     protected function registerTwigFunctions()
     {
         return [
