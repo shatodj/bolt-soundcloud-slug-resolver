@@ -7,7 +7,7 @@ if (is_file($autoload)) {
     require $autoload;
 }
 
-use Bolt\Extension\SHatoDJ\Soundcloud\Provider\SoundcloudServiceprovider;
+use Bolt\Extension\SHatoDJ\Soundcloud\Provider\SoundcloudServiceProvider;
 use Bolt\Extension\SimpleExtension;
 use Silex\Application;
 
