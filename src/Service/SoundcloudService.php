@@ -42,7 +42,8 @@ class SoundcloudService implements ISoundcloudService
         }
 
         /** @var Response */
-        $response = $this->soundcloudApi->get('/resolve', ['url' => "https://soundcloud.com/$slug"])->asJson()->request();
+        $response = $this->soundcloudApi->get('/resolve', ['url' => "https://soundcloud.com/$slug"])
+            ->request([CURLOPT_FOLLOWLOCATION => true]);
 
         if (!empty($response->getErrorString())) {
             throw new Exception($response->getErrorString());
