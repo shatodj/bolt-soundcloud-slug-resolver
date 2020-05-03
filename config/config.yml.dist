@@ -1,4 +1,4 @@
-# Soundcloud BASE URL. Change this when the default URL is not working with provided `client_id`.
+# Soundcloud BASE URL. Change this when the default URL is not working with provided `CLIENT_ID`.
 # eg.: https://api-mobi.soundcloud.com
 base_url: https://api.soundcloud.com
 

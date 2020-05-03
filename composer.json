@@ -2,6 +2,7 @@
     "name": "shatodj/bolt-soundcloud-slug-resolver",
     "description": "Bolt CMS Soundcloud Slug Resolver Extension.",
     "type": "bolt-extension",
+    "version": "1.0.0",
     "keywords": [
         "bolt", "boltcms", "extension", "Soundcloud", "API", "twig"
     ],
