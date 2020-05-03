@@ -9,7 +9,7 @@ Soundcloud Title {{ sc_resolved.data.title }}
 
 ## Disclaimer
 
-Before you jump into using this extension on some of your awesome projects, mind that you have to register your [Soundcloud App]("https://soundcloud.com/you/apps") first to obtain client secrets. However, **Soundcloud stopped providing new app registrations** due to a high amount of requests and no one knows when they'll be back again with some other innovative way.
+Before you jump into using this extension on some of your awesome projects, mind that you have to register your [Soundcloud App]("https://soundcloud.com/you/apps") first to obtain client credentials. However, **Soundcloud stopped providing new app registrations** due to a high amount of requests and no one knows when they'll be back again with some other innovative way.
 
 You can still browse Google for some existing credentials or try to extract `CLIENT_ID` from the Soundcloud website and browser console (F12) traffic view.
 
@@ -21,7 +21,7 @@ You can still browse Google for some existing credentials or try to extract `CLI
 
 1. Using composer
 
-    - Go to Bolt project `/extenstions` folder and run
+    - Go to Bolt project `/extensions` folder and run
 
     ```bash
     composer require shatodj/bolt-soundcloud-slug-resolver
@@ -29,7 +29,7 @@ You can still browse Google for some existing credentials or try to extract `CLI
 
 1. Brute force (if market doesn't work) :)
 
-    - Add new `bolt-soundcloud-slug-resolver` repositorie entry to `/extensions/composer.json` like this eg.:
+    - Add new `bolt-soundcloud-slug-resolver` repository entry to `/extensions/composer.json` like this eg.:
     
     ```json
      "repositories": {
